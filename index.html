@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="查询中文字体分类、复制 Figma 字体名称、访问设计稿提供的下载链接。"><title>Figma 字体快速查询</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="查找中文、英文、数字、多语言及 UI 字体，复制对应的 Figma 字体名称。"><title>Figma 字体快速查询</title><link rel="stylesheet" href="style.css"><script src="data.js" defer></script><script src="catalog.js" defer></script><script src="app.js" defer></script></head>
 <body>
-<header><div class="header-inner"><a class="brand" href="./">Figma 免费商用字体速查库</a><nav aria-label="字体导航"><button class="nav-item" data-view="常用字体">常用字体</button><button class="nav-item active" data-view="中文字体">中文字体</button><button class="nav-item" data-view="英文字体">英文字体</button><button class="nav-item" data-view="数字字体">数字字体</button><button class="nav-item" data-view="多语言">多语言</button><button class="nav-item" data-view="UI">UI</button></nav><button class="search-toggle" aria-label="打开搜索">⌕</button></div></header>
-<main><div class="categories" role="group" aria-label="中文字体分类"></div>
-<section class="hero"><h1>Figma 字体快速查询</h1><p>整理免费商用字体，附官方授权与下载链接，帮设计师放心用字体</p></section>
-<div class="toolbar"><label class="searchbox"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索字体名称 / Figma 名称" autocomplete="off" aria-label="搜索字体"></label><span id="count" aria-live="polite"></span></div>
-<p class="availability">首版已收录中文字体。示例优先调用本机字体；未安装时会显示系统字体。下载链接沿用设计稿，使用前请查看对应授权。</p>
+<header><div class="header-inner"><a class="brand" href="./">Figma 字体库</a><nav aria-label="字体导航"><button class="nav-item" data-view="全部字体">全部字体</button><button class="nav-item" data-view="常用字体">常用字体</button><button class="nav-item" data-view="中文字体">中文字体</button><button class="nav-item" data-view="英文字体">英文字体</button><button class="nav-item" data-view="数字字体">数字字体</button><button class="nav-item" data-view="多语言字体">多语言字体</button><button class="nav-item" data-view="UI 字体">UI 字体</button></nav><button class="search-toggle" aria-label="打开搜索">⌕</button></div></header>
+<main><section class="search-intro" hidden><button id="leave-search" type="button">← 返回字体库</button><h1>搜索</h1><p>查找字体名称，发现适合你的设计字体。<br>支持中文名称和 Figma 名称搜索。</p></section><div class="categories" role="group" aria-label="字体分类"></div>
+<section class="hero"><h1>Figma 字体快速查询</h1><p>整理字体在 Figma 中的名称，帮助设计师快速查找与复制</p></section>
+<div class="preview-controls"><input id="preview-text" type="text" maxlength="200" placeholder="输入文字，查看字体预览效果" aria-label="输入文字预览字体" autocomplete="off"><button id="reset-preview" type="button" disabled>搜索</button></div>
+<form id="search-form" class="search-form" role="search"><div class="search-input-wrap"><input id="search" type="search" placeholder="搜索" autocomplete="off" aria-label="搜索字体" aria-controls="suggestions"><button id="clear-search" type="button" aria-label="清空搜索" hidden>×</button><button class="submit-search" type="submit" aria-label="提交搜索">⌕</button></div><div id="suggestions" hidden aria-label="搜索建议"></div></form>
+<div class="results-toolbar"><strong id="results-heading">字体列表</strong><span id="count" aria-live="polite"></span><div class="view-switch" role="group" aria-label="显示方式"><button type="button" data-layout="cards" aria-pressed="true">▦ 卡片</button><button type="button" data-layout="list" aria-pressed="false">☰ 列表</button></div></div>
 <section id="grid" class="grid" aria-label="字体列表"></section>
-<section id="empty" class="empty" hidden><h2>没有找到匹配字体</h2><p>试试其他关键词，或返回中文字体。</p><button id="reset">返回中文字体</button></section>
-<footer><span>Figma 字体快速查询 · 字体库合集 2.0</span><span>164 条中文字体记录 · 7 个分类</span></footer>
+<section id="empty" class="empty" hidden><h2>没有找到匹配字体</h2><p>试试其他关键词，或返回中文字体。</p><button id="reset">清除筛选</button></section>
+<footer><span>Figma 字体快速查询 · 字体库合集 2.0</span><span>607 条分类记录 · 中文 / 英文 / 数字 / 多语言 / UI</span></footer>
 </main><div class="toast" role="status" aria-live="polite"></div><button class="back-top" aria-label="返回顶部">↑</button>
 <dialog id="copy-dialog"><form method="dialog"><h2>复制字体名称</h2><p>可选中下方文字手动复制</p><input readonly aria-label="字体名称"><button>关闭</button></form></dialog>
 </body></html>
